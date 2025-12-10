@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="css/animation.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/media.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>ContactHub - Smart Contact Manager</title>
+  </head>
+  <body>
+    <nav class="navbar bg-body-tertiary border-bottom border-1 py-3">
+      <div class="container">
+        <div class="d-flex gap-2">
+          <div
+            class="purple-gradient text-white d-flex align-items-center border border-0 rounded-2 p-2"
+          >
+            <i class="fa-solid fa-address-book fs-3"></i>
+          </div>
+          <div>
+            <h1 class="m-0 fs-3 fw-bold">
+              Contact<span class="purple-color">Hub</span>
+            </h1>
+            <p class="text-secondary m-0">Smart Contact Manager</p>
+          </div>
+        </div>
+        <div class="d-flex gap-3">
+          <button
+            id="button"
+            class="btn purple-gradient px-4 py-2 fw-bold shadow-hover cursor-pointer text-white border border-0 rounded-3"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
+            + Add Contact
+          </button>
+          <div
+            class="item d-flex cursor-pointer align-items-center text-secondary p-2 border border-0 rounded-2"
+          >
+            <i class="fa-solid fa-bell"></i>
+          </div>
+          <div
+            class="item d-flex cursor-pointer align-items-center text-secondary p-2 border border-0 rounded-2"
+          >
+            <i class="fa-solid fa-gear"></i>
+          </div>
+          <div class="img border border-0 rounded-3 overflow-hidden">
+            <img src="assets/imgi_2_avatar-4.jpg" alt="avatar" />
+          </div>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <div class="container">
+        <div class="summary d-flex gap-3 my-5 flex-wrap">
+          <div
+            class="d-flex align-items-center gap-2 p-3 bg-white border border-1 border-opacity-10 rounded-4 shadow-hover flex-grow-1"
+          >
+            <div class="blue-gradient text-white border border-0 rounded-4 p-3">
+              <i class="fa-solid fa-users"></i>
+            </div>
+            <div>
+              <span
+                class="text-uppercase d-block text-secondary fs-7 fw-semibold"
+                >total</span
+              ><span id="total" class="total-count">0</span>
+            </div>
+          </div>
+          <div
+            class="d-flex align-items-center gap-2 p-3 bg-white border border-1 border-opacity-10 rounded-4 shadow-hover flex-grow-1"
+          >
+            <div
+              class="orange-gradient text-white border border-0 rounded-4 p-3"
+            >
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <div>
+              <span
+                class="text-uppercase d-block text-secondary fs-7 fw-semibold"
+                >favorites</span
+              ><span id="favorites" class="total-count">0</span>
+            </div>
+          </div>
+          <div
+            class="d-flex align-items-center gap-2 p-3 bg-white border border-1 border-opacity-10 rounded-4 shadow-hover flex-grow-1"
+          >
+            <div class="red-gradient text-white border border-0 rounded-4 p-3">
+              <i class="fa-solid fa-heart-pulse"></i>
+            </div>
+            <div>
+              <span
+                class="text-uppercase d-block text-secondary fs-7 fw-semibold"
+                >emergency</span
+              ><span id="emergency" class="total-count">0</span>
+            </div>
+          </div>
+        </div>
+        <div class="my-5 row">
+          <div class="col-xl-8 my-4">
+            <div class="title">
+              <h2 class="fw-bold m-0 fs-1">All Contacts</h2>
+              <p class="m-0 text-secondary fw-medium">
+                Manage and organize your
+                <span id="total-count" class="total-count">0</span> contacts
+              </p>
+            </div>
+            <div class="position-relative text-secondary my-4">
+              <div class="position-absolute top-50 translate-middle-y mx-1">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </div>
+              <input
+                type="text"
+                name="search"
+                id="search"
+                oninput="Search()"
+                class="border-opacity-10 border border-1 rounded-4 py-2 w-100 ps-4"
+              />
+            </div>
+            <div>
+              <div
+                id="contacts-container"
+                class="row w-100 d-flex flex-wrap"
+              ></div>
+              <div
+                id="contacts-container-message"
+                class="d-flex d-none justify-content-center align-items-center flex-column gap-2 mt-5"
+              >
+                <div
+                  class="bg-secondary text-secondary bg-opacity-10 d-flex align-items-center border border-0 rounded-4 p-4"
+                >
+                  <i class="fa-solid fa-address-book fs-3"></i>
+                </div>
+                <h3 class="m-0 text-secondary fs-6">No Contacts Found</h3>
+                <p class="m-0 text-secondary fs-6">
+                  Click "Add Contact" to get started
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4 my-4">
+            <div class="d-flex flex-column gap-2">
+              <div
+                class="favorites-container flex-grow-1 border border-1 rounded-4 overflow-hidden border-opacity-10"
+              >
+                <div
+                  class="favorites-header d-flex align-items-center gap-2 p-3 rounded-4 flex-grow-1"
+                >
+                  <div
+                    class="orange-gradient text-white border border-0 rounded-4 p-3"
+                  >
+                    <i class="fa-solid fa-star"></i>
+                  </div>
+                  <div>
+                    <span class="text-uppercase d-block fs-6 fw-bold"
+                      >favorites</span
+                    ><span class="fs-8 text-secondary"
+                      >Quick access to starred contacts
+                    </span>
+                  </div>
+                </div>
+                <div class="bg-white p-2">
+                  <p
+                    id="favorites-container-message"
+                    class="favorites-placeholder d-none m-0 fs-7 text-secondary fw-semibold text-secondary p-5 text-center"
+                  >
+                    No favorites yet
+                  </p>
+                  <div id="favorites-container"></div>
+                </div>
+              </div>
+              <div
+                class="emergency-container flex-gdrow-1 border border-1 rounded-4 overflow-hidden border-opacity-10"
+              >
+                <div
+                  class="emergency-header d-flex align-items-center gap-2 p-3 rounded-4 flex-grow-1"
+                >
+                  <div
+                    class="red-gradient text-white border border-0 rounded-4 p-3"
+                  >
+                    <i class="fa-solid fa-star"></i>
+                  </div>
+                  <div>
+                    <span class="text-uppercase d-block fs-6 fw-bold"
+                      >emergency</span
+                    ><span class="fs-8 text-secondary"
+                      >Important contacts for urgent calls
+                    </span>
+                  </div>
+                </div>
+                <div class="bg-white p-2">
+                  <p
+                    id="emergency-container-message"
+                    class="emergency-placeholder d-none m-0 fs-7 text-secondary fw-semibold text-secondary p-5 text-center"
+                  >
+                    No emergency contacts
+                  </p>
+                  <div id="emergency-container"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                Add New Contact
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div
+                class="photo my-3 align-items-center d-flex flex-column gap-2"
+              >
+                <div
+                  class="photo-placeholder d-inline-block fs-2 text-white border border-0 rounded-circle blue-gradient"
+                >
+                  <i class="fa-solid fa-user m-4"></i>
+                </div>
+                <div class="upload">
+                  <input
+                    type="file"
+                    id="imageInput"
+                    accept="image/*"
+                    class="d-none"
+                  />
+                  <label
+                    for="imageInput"
+                    class="upload-btn dimmer cursor-pointer fs-7 fw-semibold text-secondary border border-0 rounded-3 bg-black bg-opacity-10 p-2"
+                    ><i class="fa-solid fa-camera text-secondary"></i> Change
+                    photo</label
+                  >
+                </div>
+              </div>
+              <form class="my-3">
+                <div class="name-container my-3 d-flex flex-column gap-2">
+                  <label for="name"
+                    >Full Name: <span class="text-danger">*</span></label
+                  >
+                  <input
+                    id="name"
+                    name="name"
+                    class="border border-1 border-opacity-50 focusable p-3 rounded-4 bg-secondary bg-opacity-10 w-100"
+                    type="text"
+                    oninput="CheckNameRegex()"
+                    placeholder="Enter full name"
+                    required
+                  />
+                  <p
+                    id="name-validation"
+                    class="lead fs-7 m-0 text-danger d-none"
+                  >
+                    Name should contain only letters and spaces (2-50
+                    characters)
+                  </p>
+                </div>
+                <div class="my-3 d-flex flex-column gap-2">
+                  <label for="number"
+                    >Phone Number: <span class="text-danger">*</span></label
+                  >
+                  <input
+                    id="number"
+                    name="number"
+                    oninput="CheckNumberRegex()"
+                    class="border border-1 border-opacity-50 focusable p-3 rounded-4 bg-secondary bg-opacity-10 w-100"
+                    type="text"
+                    placeholder="e.g., 01012345678"
+                    required
+                  />
+                  <p
+                    id="number-validation"
+                    class="lead fs-7 m-0 text-danger d-none"
+                  >
+                    Please enter a valid Egyptian phone number
+                  </p>
+                </div>
+                <div class="my-3 d-flex flex-column gap-2">
+                  <label for="email">Email Address: </label>
+                  <input
+                    id="email"
+                    name="email"
+                    class="border border-1 border-opacity-50 focusable p-3 rounded-4 bg-secondary bg-opacity-10 w-100"
+                    type="text"
+                    oninput="CheckEmailRegex()"
+                    placeholder="name@example.com"
+                  />
+                  <p
+                    id="email-validation"
+                    class="lead fs-7 m-0 text-danger d-none"
+                  >
+                    Please enter a valid email address
+                  </p>
+                </div>
+                <div class="my-3 d-flex flex-column gap-2">
+                  <label for="address">Address: </label>
+                  <input
+                    id="address"
+                    name="address"
+                    class="border border-1 border-opacity-50 focusable p-3 rounded-4 bg-secondary bg-opacity-10 w-100"
+                    type="text"
+                    placeholder="Enter address"
+                  />
+                </div>
+                <div class="my-3 d-flex flex-column gap-2">
+                  <label for="Group">Group: </label>
+                  <select
+                    name="group"
+                    id="group"
+                    class="border border-1 border-opacity-50 focusable p-3 rounded-4 bg-secondary bg-opacity-10 w-100"
+                  >
+                    <option value="" selected>Select a group</option>
+                    <option value="">Family</option>
+                    <option value="">Friends</option>
+                    <option value="">Wor</option>
+                    <option value="">School</option>
+                    <option value="">Other</option>
+                  </select>
+                </div>
+                <div class="my-3 d-flex flex-column gap-2">
+                  <label for="notes">Notes: </label>
+                  <textarea
+                    name="notes"
+                    id="notes"
+                    placeholder="Add notes about this contact"
+                    class="border border-1 border-opacity-50 focusable p-3 rounded-4 bg-secondary bg-opacity-10 w-100"
+                  ></textarea>
+                </div>
+                <div class="my-3 d-flex gap-3">
+                  <div
+                    class="d-flex gap-2 fs-6 fw-medium text-secondary align-items-center"
+                  >
+                    <input type="checkbox" name="favorite" id="favorite" />
+                    <label for="favorite"
+                      ><i class="fa-solid fa-star" style="color: #ffd43b"></i>
+                      Favorite</label
+                    >
+                  </div>
+                  <div
+                    class="d-flex gap-2 fs-6 fw-medium text-secondary align-items-center"
+                  >
+                    <input type="checkbox" name="favorite" id="emergencyAdd" />
+                    <label for="favorite">
+                      <i
+                        class="fa-solid fa-heart-pulse"
+                        style="color: #f50f05"
+                      ></i>
+                      Emergency</label
+                    >
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer d-flex flex-row">
+              <div class="w-50 px-2 m-0">
+                <button
+                  type="button"
+                  onclick=""
+                  class="btn btn-secondary w-100"
+                  data-bs-dismiss="modal"
+                >
+                  Cancel
+                </button>
+              </div>
+              <div class="w-50 px-2 m-0">
+                <button
+                  type="button"
+                  onclick="AddContact()"
+                  class="btn btn-primary w-100 purple-gradient"
+                >
+                  <i class="fa-solid fa-check"></i> Save Contact
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="modal fade"
+        id="editModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                Add New Contact
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div
+                class="photo my-3 align-items-center d-flex flex-column gap-2"
+              >
+                <div
+                  class="photo-placeholder d-inline-block fs-2 text-white border border-0 rounded-circle blue-gradient"
+                >
+                  <i class="fa-solid fa-user m-4"></i>
+                </div>
+                <div class="upload">
+                  <input
+                    type="file"
+                    id="imageInputUpdate"
+                    accept="image/*"
+                    class="d-none"
+                  />
+                  <label
+                    for="imageInput"
+                    class="upload-btn dimmer cursor-pointer fs-7 fw-semibold text-secondary border border-0 rounded-3 bg-black bg-opacity-10 p-2"
+                    ><i class="fa-solid fa-camera text-secondary"></i> Change
+                    photo</label
+                  >
+                </div>
+              </div>
+              <form class="my-3">
+                <div class="name-container my-3 d-flex flex-column gap-2">
+                  <label for="name"
+                    >Full Name: <span class="text-danger">*</span></label
+                  >
+                  <input
+                    id="nameUpdate"
+                    name="name"
+                    class="border border-1 border-opacity-50 focusable p-3 rounded-4 bg-secondary bg-opacity-10 w-100"
+                    type="text"
+                    oninput="CheckNameRegex()"
+                    placeholder="Enter full name"
+                    required
+                  />
+                  <p
+                    id="name-validation"
+                    class="lead fs-7 m-0 text-danger d-none"
+                  >
+                    Name should contain only letters and spaces (2-50
+                    characters)
+                  </p>
+                </div>
+                <div class="my-3 d-flex flex-column gap-2">
+                  <label for="number"
+                    >Phone Number: <span class="text-danger">*</span></label
+                  >
+                  <input
+                    id="numberUpdate"
+                    name="number"
+                    oninput="CheckNumberRegex()"
+                    class="border border-1 border-opacity-50 focusable p-3 rounded-4 bg-secondary bg-opacity-10 w-100"
+                    type="text"
+                    placeholder="e.g.,
+                  01012345678"
+                    required
+                  />
+                  <p
+                    id="number-validation"
+                    class="lead fs-7 m-0 text-danger d-none"
+                  >
+                    Please enter a valid Egyptian phone number
+                  </p>
+                </div>
+                <div class="my-3 d-flex flex-column gap-2">
+                  <label for="email">Email Address: </label>
+                  <input
+                    id="emailUpdate"
+                    name="email"
+                    class="border border-1 border-opacity-50 focusable p-3 rounded-4 bg-secondary bg-opacity-10 w-100"
+                    type="text"
+                    oninput="CheckEmailRegex()"
+                    placeholder="name@example.com"
+                  />
+                  <p
+                    id="email-validation"
+                    class="lead fs-7 m-0 text-danger d-none"
+                  >
+                    Please enter a valid email address
+                  </p>
+                </div>
+                <div class="my-3 d-flex flex-column gap-2">
+                  <label for="address">Address: </label>
+                  <input
+                    id="addressUpdate"
+                    name="address"
+                    class="border border-1 border-opacity-50 focusable p-3 rounded-4 bg-secondary bg-opacity-10 w-100"
+                    type="text"
+                    placeholder="Enter address"
+                  />
+                </div>
+                <div class="my-3 d-flex flex-column gap-2">
+                  <label for="Group">Group: </label>
+                  <select
+                    name="group"
+                    id="groupUpdate"
+                    class="border border-1 border-opacity-50 focusable p-3 rounded-4 bg-secondary bg-opacity-10 w-100"
+                  >
+                    <option value="" selected>Select a group</option>
+                    <option value="">Family</option>
+                    <option value="">Friends</option>
+                    <option value="">Wor</option>
+                    <option value="">School</option>
+                    <option value="">Other</option>
+                  </select>
+                </div>
+                <div class="my-3 d-flex flex-column gap-2">
+                  <label for="notes">Notes: </label>
+                  <textarea
+                    name="notes"
+                    id="notesUpdate"
+                    placeholder="Add notes about this contact"
+                    class="border border-1 border-opacity-50 focusable p-3 rounded-4 bg-secondary bg-opacity-10 w-100"
+                  ></textarea>
+                </div>
+                <div class="my-3 d-flex gap-3">
+                  <div
+                    class="d-flex gap-2 fs-6 fw-medium text-secondary align-items-center"
+                  >
+                    <input
+                      type="checkbox"
+                      name="favorite"
+                      id="favoriteUpdate"
+                    />
+                    <label for="favorite"
+                      ><i class="fa-solid fa-star" style="color: #ffd43b"></i>
+                      Favorite</label
+                    >
+                  </div>
+                  <div
+                    class="d-flex gap-2 fs-6 fw-medium text-secondary align-items-center"
+                  >
+                    <input
+                      type="checkbox"
+                      name="favorite"
+                      id="emergencyUpdate"
+                    />
+                    <label for="favorite">
+                      <i
+                        class="fa-solid fa-heart-pulse"
+                        style="color: #f50f05"
+                      ></i>
+                      Emergency</label
+                    >
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer d-flex flex-row">
+              <div class="w-50 px-2 m-0">
+                <button
+                  type="button"
+                  onclick=""
+                  class="btn btn-secondary w-100"
+                  data-bs-dismiss="modal"
+                >
+                  Cancel
+                </button>
+              </div>
+              <div class="w-50 px-2 m-0">
+                <button
+                  type="button"
+                  onclick="UpdateContact()"
+                  class="btn btn-primary w-100 purple-gradient"
+                >
+                  <i class="fa-solid fa-check"></i> Save Contact
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/index.js"></script>
+  </body>
+</html>

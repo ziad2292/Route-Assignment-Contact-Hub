@@ -1,0 +1,254 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+}
+
+textarea {
+  resize: none;
+}
+
+.fs-7 {
+  font-size: 14px;
+}
+
+.fs-8 {
+  font-size: 12px;
+}
+
+.w-33 {
+  width: 33.333%;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.dimmer {
+  transition: filter 0.3s ease;
+}
+
+.dimmer:hover {
+  filter: brightness(0.1) !important;
+}
+
+.shadow-hover {
+  transition: box-shadow 0.3s ease;
+}
+
+.shadow-hover:hover {
+  box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #f5f5fc;
+}
+
+.focusable {
+  outline: none;
+}
+
+.focusable:focus {
+  border-color: #7f22fe !important;
+  box-shadow: 0px 10px 13px -7px #000000,
+    0px 0px 28px -5px rgba(127, 34, 254, 0.44);
+}
+
+.purple-gradient {
+  background: linear-gradient(
+    140deg,
+    rgba(124, 37, 254, 1) 26%,
+    rgba(82, 57, 247, 1) 65%
+  ) !important;
+}
+
+.light-purple-bg {
+  background-color: #ede9fe;
+}
+
+.blue-gradient {
+  background: #2779ff;
+  background: linear-gradient(
+    140deg,
+    rgba(39, 121, 255, 1) 26%,
+    rgba(23, 97, 253, 1) 65%
+  ) !important;
+}
+
+.blue-color {
+  color: #155dfc;
+}
+
+.light-blue-bg {
+  background-color: #dbeafe !important;
+}
+
+.orange-gradient {
+  background: linear-gradient(
+    140deg,
+    rgba(255, 171, 0, 1) 26%,
+    rgba(255, 116, 0, 1) 65%
+  ) !important;
+}
+
+.red-gradient {
+  background: linear-gradient(
+    140deg,
+    rgba(251, 25, 76, 1) 26%,
+    rgba(236, 0, 36, 1) 65%
+  ) !important;
+}
+
+.green-color {
+  color: #009966;
+}
+
+.light-green-bg {
+  background-color: #ecfdf5;
+}
+
+.light-orange-bg {
+  background-color: #fffbeb;
+}
+
+.light-red-bg {
+  background-color: #fff1f2;
+}
+
+.delete-icon {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.delete-icon:hover {
+  background-color: #fff1f2 !important;
+  color: #ec003f !important;
+}
+
+.edit-icon {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.edit-icon:hover {
+  background-color: #eef2ff !important;
+  color: #4f39f6 !important;
+}
+
+.emergency-icon:hover {
+  background-color: #ffe4e6;
+}
+
+.emergency-icon {
+  transition: background-color 0.3s ease;
+}
+
+.star-icon {
+  transition: background-color 0.3s ease;
+}
+
+.email-icon {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.email-icon:hover {
+  background-color: #7f22fe;
+  color: white;
+}
+
+.star-icon:hover {
+  background-color: #fef3c6;
+}
+
+.phone-icon {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.phone-icon:hover {
+  background-color: #00bc7d;
+  color: white;
+}
+
+.phone-icon-red {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.phone-icon-red:hover {
+  background-color: #ff2056;
+  color: white !important;
+}
+
+.light-red-bg {
+  background-color: #fff1f2;
+}
+
+.purple-color {
+  color: #7f22fe;
+}
+
+nav button {
+  transition: transform 0.5s ease !important;
+}
+
+nav button:hover {
+  transform: translateY(-3px);
+}
+
+nav .item {
+  transition: background-color 0.3s ease;
+}
+
+nav .item:hover {
+  background-color: #0000000c;
+  color: #000000c4 !important;
+}
+
+nav .img img {
+  width: 40px;
+  height: 40px;
+}
+
+main #search {
+  outline: none;
+}
+
+main #search:focus {
+  border-color: #7f22fe !important;
+  box-shadow: 0px 10px 13px -7px #000000,
+    0px 0px 28px -5px rgba(127, 34, 254, 0.44);
+}
+
+main .favorites-header {
+  background-color: #fff8ed;
+}
+
+main .emergency-header {
+  background-color: #fef2f2;
+}
+
+main #contacts-container .favorite-tag {
+  transform: translate(25%, -25%);
+}
+
+main #contacts-container .emergency-tag {
+  transform: translate(25%, 25%);
+}
+
+main .favorites-container .item-container {
+  transition: background-color 0.3s ease;
+}
+
+main .favorites-container .item-container:hover {
+  background-color: #fffbeb;
+}
+
+main .emergency-container .item-container {
+  transition: background-color 0.3s ease;
+}
+
+main .emergency-container .item-container:hover {
+  background-color: #fff1f2;
+}
