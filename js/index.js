@@ -384,9 +384,9 @@ function AddContact() {
 
   contactsList.push(contact);
   SaveToLocalStorage();
+  CloseAddModal();
   SuccessAlert("Contact had been added successfully");
   ClearFields();
-  DisplayAll();
 }
 
 function AddEvents() {
@@ -418,6 +418,14 @@ function AddEvents() {
       EditContact(i);
     });
   }
+}
+
+function CloseAddModal() {
+  document.getElementById("closeAdd").click();
+}
+
+function CloseEditModal() {
+  document.getElementById("closeEdit").click();
 }
 
 function Search() {
@@ -610,9 +618,10 @@ function EmergencyToggle(index) {
   DisplayAll();
 }
 
-function DeleteContact(index) {
-  DeleteAlert();
-  contactsList.splice(index, 1);
+async function DeleteContact(index) {
+  if (await DeleteAlert()) {
+    contactsList.splice(index, 1);
+  }
   SaveToLocalStorage();
   DisplayAll();
 }
@@ -659,6 +668,7 @@ function UpdateContact() {
 
   contactsList.push(contact);
   SaveToLocalStorage();
+  CloseEditModal();
   SuccessAlert("Contact had been updated successfully");
   ClearFields();
   DisplayAll();
@@ -747,8 +757,8 @@ function FailureAlert(title, content) {
   });
 }
 
-function DeleteAlert() {
-  Swal.fire({
+async function DeleteAlert() {
+  const result = await Swal.fire({
     title: "Are you sure?",
     text: "You won't be able to revert this!",
     icon: "warning",
@@ -756,13 +766,15 @@ function DeleteAlert() {
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
     confirmButtonText: "Yes, delete it!",
-  }).then((result) => {
-    if (result.isConfirmed) {
-      Swal.fire({
-        title: "Deleted!",
-        text: "Your contact has been deleted.",
-        icon: "success",
-      });
-    }
   });
+
+  if (result.isConfirmed) {
+    await Swal.fire({
+      title: "Deleted!",
+      text: "Your contact has been deleted.",
+      icon: "success",
+    });
+    return true;
+  }
+  return false;
 }
