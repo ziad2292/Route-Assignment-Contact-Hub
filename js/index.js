@@ -742,6 +742,7 @@ function GetFromLocalStorage() {
 
   if (!contactList) {
     SaveToLocalStorage();
+    return [];
   }
   return contactList;
 }
