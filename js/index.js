@@ -1,5 +1,4 @@
 let contactsList = [];
-SaveToLocalStorage();
 
 let search = document.getElementById("search");
 
@@ -739,7 +738,12 @@ function SaveToLocalStorage() {
 }
 
 function GetFromLocalStorage() {
-  return JSON.parse(localStorage.getItem("contactsList"));
+  let contactList = JSON.parse(localStorage.getItem("contactsList"));
+
+  if (!contactList) {
+    SaveToLocalStorage();
+  }
+  return contactList;
 }
 
 function SuccessAlert(content) {
