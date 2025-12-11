@@ -1,4 +1,5 @@
 let contactsList = [];
+SaveToLocalStorage();
 
 let search = document.getElementById("search");
 
