@@ -387,6 +387,7 @@ function AddContact() {
   CloseAddModal();
   SuccessAlert("Contact had been added successfully");
   ClearFields();
+  DisplayAll();
 }
 
 function AddEvents() {
